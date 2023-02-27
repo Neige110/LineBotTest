@@ -20,9 +20,11 @@ function handleEvent(event: line.MessageEvent) {
         return Promise.resolve(null);
     }
 
+    console.log(`user:${event.source.userId} message:${event.message.text}`);
+
     return client.replyMessage(event.replyToken, {
         type: 'text',
-        text: `${event.message.text} だってよ`
+        text: `user:${event.source.userId} message:${event.message.text} らしいよ`
     });
 }
 
