@@ -15,7 +15,15 @@ app.post('/webhook', line.middleware(config), (req, res) => {
 });
 
 const client = new line.Client(config);
-function handleEvent(event: line.MessageEvent) {
+function handleEvent(event: line.WebhookEvent) {
+    if (event.type === 'postback') {
+
+        console.log(`PostBack:${event.postback.data} User:${event.source.userId}`);
+        return client.replyMessage(event.replyToken, {
+            type: 'text',
+            text: `user:${event.source.userId} yoyaku`
+        });
+    }
     if (event.type !== 'message' || event.message.type !== 'text') {
         return Promise.resolve(null);
     }
