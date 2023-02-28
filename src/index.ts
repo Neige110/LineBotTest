@@ -89,6 +89,12 @@ function handleEvent(event: line.WebhookEvent) {
         }
       });
     }
+    else{
+      return client.replyMessage(event.replyToken, {
+        type: 'text',
+        text: `user:${event.source.userId} message:${event.postback.data} らしいよ`
+      });
+    }
 
   }
   if (event.type !== 'message' || event.message.type !== 'text') {
