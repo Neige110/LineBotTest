@@ -19,7 +19,7 @@ function handleEvent(event: line.WebhookEvent) {
   if (event.type === 'postback') {
 
     console.log(`PostBack:${event.postback.data} User:${event.source.userId} params:${event.postback.params}`);
-    if ((event.postback.params as any).action === 'yoyakusuru') {
+    if (event.postback.data === 'action=yoyakusuru') {
       return client.replyMessage(event.replyToken, {
         type: 'flex',
         altText: "yoyaku",
@@ -90,9 +90,6 @@ function handleEvent(event: line.WebhookEvent) {
       });
     }
 
-    if (event.postback.params) {
-
-    }
   }
   if (event.type !== 'message' || event.message.type !== 'text') {
     return Promise.resolve(null);
