@@ -89,6 +89,76 @@ function handleEvent(event: line.WebhookEvent) {
         }
       });
     }
+    else if(event.postback.data.startsWith('parson')){
+      return client.replyMessage(event.replyToken, {
+        type: 'flex',
+        altText: "menu",
+        contents: {
+          "type": "carousel",
+          "contents": [
+            {
+              "type": "bubble",
+              "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "もみほぐし10分 １０００円"
+                  }
+                ]
+              },
+              "footer": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "button",
+                    "action": {
+                      "type": "postback",
+                      "label": "OK",
+                      "data": "menu=a"
+                    }
+                  }
+                ]
+              },
+              "styles": {
+                "header": {
+                  "separator": false
+                }
+              }
+            },
+            {
+              "type": "bubble",
+              "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "もみほぐし２0分 １０００円"
+                  }
+                ]
+              },
+              "footer": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "button",
+                    "action": {
+                      "type": "postback",
+                      "label": "OK",
+                      "data": "menu=b"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      });
+    }
     else{
       return client.replyMessage(event.replyToken, {
         type: 'text',
